@@ -18,26 +18,26 @@ describe('Directory Feature - OrangeHRM', () => {
 
 
     // TC01
-    it('TC01 - Directory page tampil', () => {
+    it('TC01 - Directory page should be displayed', () => {
         cy.contains('Directory').should('be.visible')
     })
 
 
     // TC02
-    it('TC02 - Data pegawai tampil', () => {
+    it('TC02 - Employee data should be displayed', () => {
         DirectoryPage.employeeCards().should('exist')
     })
 
 
     // TC03
-    it('TC03 - Search tanpa isi filter', () => {
+    it('TC03 - Search without filter input', () => {
         DirectoryPage.searchButton().click()
         DirectoryPage.employeeCards().should('exist')
     })
 
 
     // TC04
-    it('TC04 - Search dengan nama valid', () => {
+    it('TC04 - Search with valid employee name', () => {
         DirectoryPage.employeeNameInput().type('Linda')
         DirectoryPage.searchButton().click()
         DirectoryPage.employeeCards().should('exist')
@@ -45,7 +45,7 @@ describe('Directory Feature - OrangeHRM', () => {
 
 
     // TC05
-    it('TC05 - Reset filter', () => {
+    it('TC05 - Reset filter fields', () => {
 
         DirectoryPage.employeeNameInput().type('Linda')
         DirectoryPage.resetButton().click()
@@ -57,7 +57,7 @@ describe('Directory Feature - OrangeHRM', () => {
 
 
     // TC06
-    it('TC06 - Search nama tidak ada', () => {
+    it('TC06 - Search with non-existing employee name', () => {
         DirectoryPage.employeeNameInput().type('XYZ123ABC')
         DirectoryPage.searchButton().click()
         DirectoryPage.noRecordText().should('exist')
@@ -65,7 +65,7 @@ describe('Directory Feature - OrangeHRM', () => {
 
 
     // TC07
-    it('TC07 - Validasi API search dengan intercept', () => {
+    it('TC07 - Validate search API response using intercept', () => {
 
         cy.intercept(
             'GET',
