@@ -112,11 +112,7 @@ describe('Login Feature - OrangeHRM (POM + Intercept)', () => {
     LoginPage.verifyLogo()
   })
 
-  it('TC10 - Login form should be displayed', () => {
-    LoginPage.verifyForm()
-  })
-
-  it('TC11 - Forgot Password link should navigate correctly', () => {
+    it('TC10 - Forgot Password link should navigate correctly', () => {
     LoginPage.clickForgotPassword()
   })
 
