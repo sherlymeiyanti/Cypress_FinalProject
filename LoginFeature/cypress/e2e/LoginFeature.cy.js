@@ -15,10 +15,10 @@ describe('Login Feature - OrangeHRM (POM + Intercept)', () => {
   })
 
   // ==================================================
-  // POSITIVE TEST CASE
+  // POSITIVE TEST CASES
   // ==================================================
 
-  it('TC01 - Login valid', () => {
+  it('TC01 - Login with valid username and password', () => {
 
     LoginPage.interceptLogin()
 
@@ -31,7 +31,7 @@ describe('Login Feature - OrangeHRM (POM + Intercept)', () => {
     LoginPage.verifyDashboard()
   })
 
-  it('TC02 - Login menggunakan ENTER', () => {
+  it('TC02 - Login using ENTER key', () => {
 
     LoginPage.interceptLogin()
 
@@ -46,77 +46,77 @@ describe('Login Feature - OrangeHRM (POM + Intercept)', () => {
   })
 
   // ==================================================
-  // NEGATIVE TEST CASE
+  // NEGATIVE TEST CASES
   // ==================================================
 
-  it('TC03 - Username kosong', () => {
+  it('TC03 - Login with empty username', () => {
     LoginPage.inputPassword(data.validPass)
     LoginPage.clickLogin()
     LoginPage.verifyRequired()
   })
 
-  it('TC04 - Password kosong', () => {
+  it('TC04 - Login with empty password', () => {
     LoginPage.inputUsername(data.validUser)
     LoginPage.clickLogin()
     LoginPage.verifyRequired()
   })
 
-  it('TC05 - Username salah', () => {
+  it('TC05 - Login with invalid username', () => {
 
     LoginPage.interceptLogin()
 
     LoginPage.login(data.invalidUser, data.validPass)
 
     cy.wait('@loginRequest')
-    .its('response.statusCode')
-    .should('be.oneOf', [200, 302])
+      .its('response.statusCode')
+      .should('be.oneOf', [200, 302])
 
     LoginPage.verifyInvalid()
   })
 
-  it('TC06 - Password salah', () => {
+  it('TC06 - Login with invalid password', () => {
 
     LoginPage.interceptLogin()
 
     LoginPage.login(data.validUser, data.invalidPass)
 
     cy.wait('@loginRequest')
-    .its('response.statusCode')
-    .should('be.oneOf', [200, 302])
+      .its('response.statusCode')
+      .should('be.oneOf', [200, 302])
 
     LoginPage.verifyInvalid()
   })
 
-  it('TC07 - Username dan Password salah', () => {
+  it('TC07 - Login with invalid username and password', () => {
 
     LoginPage.interceptLogin()
 
     LoginPage.login(data.invalidUser, data.invalidPass)
 
     cy.wait('@loginRequest')
-    .its('response.statusCode')
-    .should('be.oneOf', [200, 302])
+      .its('response.statusCode')
+      .should('be.oneOf', [200, 302])
 
     LoginPage.verifyInvalid()
   })
 
   // ==================================================
-  // UI TEST CASE
+  // UI TEST CASES
   // ==================================================
 
-  it('TC08 - Password harus hidden', () => {
+  it('TC08 - Password field should be hidden', () => {
     LoginPage.verifyPasswordHidden()
   })
 
-  it('TC09 - Logo tampil', () => {
+  it('TC09 - Logo should be visible', () => {
     LoginPage.verifyLogo()
   })
 
-  it('TC10 - Form login tampil', () => {
+  it('TC10 - Login form should be displayed', () => {
     LoginPage.verifyForm()
   })
 
-  it('TC11 - Link Forgot Password berfungsi', () => {
+  it('TC11 - Forgot Password link should navigate correctly', () => {
     LoginPage.clickForgotPassword()
   })
 
